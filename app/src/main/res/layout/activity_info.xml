@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TableRow android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <ImageView android:layout_width="?attr/actionBarSize"
+            android:layout_height="?attr/actionBarSize"
+            android:src="@drawable/ic_back"
+            android:id="@+id/btn_back"
+            android:padding="16dp"/>
+
+    </TableRow>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="16dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_weight="1">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:src="@drawable/ic_launcher_background"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="32dp"
+            android:layout_marginTop="8dp"
+            android:textColor="#263238"
+            android:gravity="center"
+            android:text="Lee Kwang Soo"/>
+
+        <TableRow android:layout_width="match_parent"
+            android:layout_margin="16dp"
+            android:background="@drawable/bg_btn_call"
+            android:padding="16dp"
+            android:id="@+id/btn_call_out"
+            android:gravity="center"
+            android:layout_height="wrap_content">
+
+            <ImageView android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginLeft="16dp"
+                android:src="@drawable/ic_call_out"/>
+
+            <TextView android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="36dp"
+                android:textColor="@android:color/white"
+                android:text="Cuộc gọi đi"
+                android:textSize="24dp"
+                android:layout_height="wrap_content"/>
+
+        </TableRow>
+        <TableRow android:layout_width="match_parent"
+            android:layout_margin="16dp"
+            android:background="@drawable/bg_btn_call"
+            android:padding="16dp"
+            android:gravity="center"
+            android:id="@+id/btn_call_in"
+            android:layout_height="wrap_content">
+
+            <ImageView android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginLeft="16dp"
+                android:src="@drawable/ic_call_in"/>
+
+            <TextView android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="32dp"
+                android:textSize="24dp"
+                android:textColor="@android:color/white"
+                android:text="Cuộc gọi đến"
+                android:layout_height="wrap_content"/>
+
+        </TableRow>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"></LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
