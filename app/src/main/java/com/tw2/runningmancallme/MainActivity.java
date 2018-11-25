@@ -2,18 +2,24 @@ package com.tw2.runningmancallme;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,7 +28,7 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
     private DatabaseReference mReference;
     private SharedPreferences sharedPreferences;
     private boolean isInstall;
@@ -31,19 +37,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private List<Contact> list;
     private CircleImageView imgYooJaeSuk, imgKimJongKook, imgKwangSoo, imgSongJihyo, imgHaHa, imgJiSukJin,imgGary, imgSeChan, imgSomin;
     private List<CircleImageView> listCircle;
+    private AdView banner;
+    private AVLoadingIndicatorView loadingIndicatorView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(ContextCompat.getColor(getApplicationContext(), R.color.colorStatusBar_1));
+        }
         mReference = FirebaseDatabase.getInstance().getReference();
         sharedPreferences = getSharedPreferences("my_data", MODE_PRIVATE);
         edit = sharedPreferences.edit();
 
         initView();
+        initAds();
         initNbInstall();
         initData();
+    }
+
+    private void initAds() {
+        MobileAds.initialize(getApplicationContext(), "ca-app-pub-2328589623882503~5227800474");
+        banner = (AdView) findViewById(R.id.banner);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        banner.loadAd(adRequest);
     }
 
     private void initData() {
@@ -56,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Contact contact = dataSnapshot.getValue(Contact.class);
                 list.add(contact);
                 if (list.size()==9){
+                    loadingIndicatorView.hide();
                     for (int i=0;i<list.size();i++){
                         Picasso.get().load(list.get(i).getImage()).into(listCircle.get(i));
                     }
@@ -95,6 +114,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imgGary = (CircleImageView) findViewById(R.id.btn_7);
         imgSeChan = (CircleImageView) findViewById(R.id.btn_8);
         imgSomin = (CircleImageView) findViewById(R.id.btn_9);
+        loadingIndicatorView = (AVLoadingIndicatorView) findViewById(R.id.loading);
+        loadingIndicatorView.show();
 
         listCircle.add(imgYooJaeSuk);
         listCircle.add(imgKimJongKook);
@@ -115,6 +136,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         Intent intent = new Intent(MainActivity.this, InfoActivity.class);
                         intent.putExtra("IMAGE", list.get(finalI).getImage());
                         intent.putExtra("NAME", list.get(finalI).getName());
+                        intent.putExtra("CALL", list.get(finalI).getCall());
                         startActivity(intent);
                     }
                 }
@@ -159,7 +181,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public void onClick(View v) {
+    public void onPause() {
+        if (banner != null) {
+            banner.pause();
+        }
+        super.onPause();
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (banner != null) {
+            banner.resume();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        if (banner != null) {
+            banner.destroy();
+        }
+        super.onDestroy();
     }
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -17,9 +18,16 @@
             android:layout_weight="1"
             android:layout_height="match_parent"/>
 
-        <ImageView android:layout_width="?attr/actionBarSize"
+        <TextView android:layout_width="wrap_content"
             android:layout_height="?attr/actionBarSize"
-            android:padding="16dp"/>
+            android:paddingRight="16dp"
+            android:paddingLeft="16dp"
+            android:text="@string/txt_save"
+            android:id="@+id/btn_save"
+            android:gravity="center"
+            android:textColor="@color/colorBlue"
+            android:textStyle="bold"
+            android:textSize="19dp"/>
 
     </TableRow>
 
@@ -36,10 +44,9 @@
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="72dp"
-                android:layout_height="72dp"
-                android:layout_marginTop="16dp"
-                android:src="@drawable/gift_2"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:src="@drawable/rm"
                 android:layout_gravity="center"/>
 
             <View
@@ -54,26 +61,30 @@
                 android:layout_marginTop="8dp"
                 android:textStyle="bold"
                 android:textSize="22dp"
-                android:text="Cài đặt âm báo"/>
+                android:text="@string/txt_cai_dat_am_bao"/>
 
             <RadioGroup
                 android:layout_width="match_parent"
+                android:id="@+id/radio_group_1"
                 android:layout_height="wrap_content">
 
                 <RadioButton
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Nhạc chuông + rung"
+                    android:text="@string/txt_am_1"
+                    android:id="@+id/radio_button_1"
                     android:textSize="16dp"/>
                 <RadioButton
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Rung"
+                    android:text="@string/txt_am_2"
+                    android:id="@+id/radio_button_2"
                     android:textSize="16dp"/>
                 <RadioButton
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Im lặng"
+                    android:text="@string/txt_am_3"
+                    android:id="@+id/radio_button_3"
                     android:textSize="16dp"/>
 
 
@@ -91,29 +102,34 @@
                 android:layout_marginTop="8dp"
                 android:textStyle="bold"
                 android:textSize="22dp"
-                android:text="Thời gian chờ cuộc gọi đi"/>
+                android:text="@string/txt_thoi_gian_di"/>
 
             <RadioGroup
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
+                android:id="@+id/radio_group_2"
                 android:layout_height="wrap_content">
 
                 <RadioButton
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="3 giây"
+                    android:text="@string/txt_3_giay"
+                    android:textSize="16dp"
+                    android:id="@+id/radio_button_4"
+                    android:shadowColor="@color/colorBlue"
+                    android:layout_weight="1"/>
+                <RadioButton
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_5_giay"
+                    android:id="@+id/radio_button_5"
                     android:textSize="16dp"
                     android:layout_weight="1"/>
                 <RadioButton
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="5 giây"
-                    android:textSize="16dp"
-                    android:layout_weight="1"/>
-                <RadioButton
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="10 giây"
+                    android:text="@string/txt_10_giay"
+                    android:id="@+id/radio_button_6"
                     android:textSize="16dp"
                     android:layout_weight="1"/>
 
@@ -132,30 +148,34 @@
                 android:layout_marginTop="8dp"
                 android:textStyle="bold"
                 android:textSize="22dp"
-                android:text="Thời gian chờ cuộc gọi đến"/>
+                android:text="@string/txt_thoi_gian_den"/>
 
             <RadioGroup
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
+                android:id="@+id/radio_group_3"
                 android:layout_height="wrap_content">
 
                 <RadioButton
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="3 giây"
+                    android:text="@string/txt_3_giay"
+                    android:id="@+id/radio_button_7"
                     android:textSize="16dp"
                     android:layout_weight="1"/>
                 <RadioButton
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="5 giây"
+                    android:text="@string/txt_5_giay"
+                    android:id="@+id/radio_button_8"
                     android:textSize="16dp"
                     android:layout_weight="1"/>
                 <RadioButton
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="10 giây"
+                    android:text="@string/txt_10_giay"
                     android:textSize="16dp"
+                    android:id="@+id/radio_button_9"
                     android:layout_weight="1"/>
 
 
@@ -164,5 +184,15 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/banner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_id">
+
+    </com.google.android.gms.ads.AdView>
 
 </LinearLayout>

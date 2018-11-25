@@ -4,4 +4,8 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorBlue">#0288D1</color>
+    <color name="colorStatusBar_1">#1a000d</color>
+    <color name="colorStatusBar_2">#0066ff</color>
+    <color name="colorStatusBar_3">#330033</color>
+    <color name="colorStatusBar_4">#330033</color>
 </resources>

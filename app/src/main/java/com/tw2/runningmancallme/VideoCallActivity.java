@@ -2,6 +2,7 @@ package com.tw2.runningmancallme;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.ImageFormat;
 import android.graphics.SurfaceTexture;
@@ -25,6 +26,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.Size;
@@ -33,7 +35,13 @@ import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -77,17 +85,38 @@ public class VideoCallActivity extends AppCompatActivity {
     private boolean mFlashSupported;
     private Handler mBackgroundHandler;
     private HandlerThread mBackgroundThread;
+    private ImageView imageView;
+    private String linkCall;
+    private AdView banner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_call);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(ContextCompat.getColor(getApplicationContext(), R.color.colorStatusBar_1));
+        }
+        Intent intent = getIntent();
+        linkCall = intent.getStringExtra("CALL");
         textureView = (TextureView) findViewById(R.id.texture);
         assert textureView != null;
         textureView.setSurfaceTextureListener(textureListener);
+        initAds();
         initView();
     }
 
+    private void initAds() {
+        MobileAds.initialize(getApplicationContext(), "ca-app-pub-2328589623882503~5227800474");
+        banner = (AdView) findViewById(R.id.banner);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        banner.loadAd(adRequest);
+    }
+
     private void initView() {
+        imageView = (ImageView) findViewById(R.id.img_call);
+
+        Glide.with(this).load(linkCall).into(imageView);
+
         findViewById(R.id.btn_decline).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -347,6 +376,9 @@ public class VideoCallActivity extends AppCompatActivity {
         super.onResume();
         Log.e(TAG, "onResume");
         startBackgroundThread();
+        if (banner != null) {
+            banner.resume();
+        }
         if (textureView.isAvailable()) {
             openCamera();
         } else {
@@ -357,7 +389,18 @@ public class VideoCallActivity extends AppCompatActivity {
     protected void onPause() {
         Log.e(TAG, "onPause");
         //closeCamera();
+        if (banner != null) {
+            banner.pause();
+        }
         stopBackgroundThread();
         super.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        if (banner != null) {
+            banner.destroy();
+        }
+        super.onDestroy();
     }
 }

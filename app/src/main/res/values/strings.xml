@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">Running Man Call Me</string>
+
+    <string name="banner_id">ca-app-pub-2328589623882503/6819195693</string>
+    <string name="banner_full">ca-app-pub-2328589623882503/2639567094</string>
+
+    <string name="txt_goi_di">Calling go</string>
+    <string name="txt_goi_den">Call to</string>
+
+
+    <string name="txt_message">This is just a fake call app</string>
+
+    <!--Setting-->
+
+    <string name="txt_save">SAVE</string>
+    <string name="txt_cai_dat_am_bao">Ringtone Settings</string>
+    <string name="txt_am_1">Ringtone + vibrate</string>
+    <string name="txt_am_2">Vibrate</string>
+    <string name="txt_am_3">Silent</string>
+    <string name="txt_thoi_gian_di">Schedule outgoing calls</string>
+    <string name="txt_thoi_gian_den">Schedule an incoming call</string>
+    <string name="txt_3_giay">3 seconds</string>
+    <string name="txt_5_giay">5 seconds</string>
+    <string name="txt_10_giay">10 seconds</string>
+
 </resources>

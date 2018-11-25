@@ -1,29 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
 
-    <TableRow android:layout_width="match_parent"
+    <TableRow
+        android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize">
 
-        <ImageView android:layout_width="?attr/actionBarSize"
-            android:layout_height="?attr/actionBarSize"
-            android:src="@drawable/ic_back"
+        <ImageView
             android:id="@+id/btn_back"
-            android:padding="16dp"/>
-
-        <View android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"/>
-
-        <ImageView android:layout_width="?attr/actionBarSize"
+            android:layout_width="?attr/actionBarSize"
             android:layout_height="?attr/actionBarSize"
-            android:src="@drawable/ic_settings_blue"
-            android:id="@+id/btn_setting"
-            android:padding="16dp"/>
+            android:padding="16dp"
+            android:src="@drawable/ic_back" />
 
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/btn_setting"
+            android:layout_width="?attr/actionBarSize"
+            android:layout_height="?attr/actionBarSize"
+            android:padding="16dp"
+            android:src="@drawable/ic_settings_blue" />
 
 
     </TableRow>
@@ -32,69 +36,76 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:padding="32dp"
+        android:layout_weight="1"
         android:gravity="center"
         android:orientation="vertical"
-        android:layout_weight="1">
+        android:padding="32dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_avatar"
             android:layout_width="96dp"
             android:layout_height="96dp"
-            android:id="@+id/img_avatar"
-            android:src="@drawable/ic_launcher_background"/>
+            android:src="@drawable/ic_launcher_background" />
 
         <TextView
+            android:id="@+id/tv_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="32dp"
             android:layout_marginTop="8dp"
-            android:textColor="#263238"
             android:gravity="center"
-            android:id="@+id/tv_name"
-            android:text="Lee Kwang Soo"/>
+            android:text="Lee Kwang Soo"
+            android:textColor="#263238"
+            android:textSize="32dp" />
 
-        <TableRow android:layout_width="match_parent"
+        <TableRow
+            android:id="@+id/btn_call_out"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:background="@drawable/bg_btn_call"
-            android:padding="16dp"
-            android:id="@+id/btn_call_out"
             android:gravity="center"
-            android:layout_height="wrap_content">
+            android:padding="16dp">
 
-            <ImageView android:layout_width="32dp"
+            <ImageView
+                android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_marginLeft="16dp"
-                android:src="@drawable/ic_call_out"/>
+                android:src="@drawable/ic_call_out" />
 
-            <TextView android:layout_width="0dp"
-                android:layout_weight="1"
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="36dp"
+                android:layout_weight="1"
+                android:text="@string/txt_goi_di"
                 android:textColor="@android:color/white"
-                android:text="Cuộc gọi đi"
-                android:textSize="20dp"
-                android:layout_height="wrap_content"/>
+                android:textSize="20dp" />
 
         </TableRow>
-        <TableRow android:layout_width="match_parent"
+
+        <TableRow
+            android:id="@+id/btn_call_in"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:background="@drawable/bg_btn_call"
-            android:padding="16dp"
             android:gravity="center"
-            android:id="@+id/btn_call_in"
-            android:layout_height="wrap_content">
+            android:padding="16dp">
 
-            <ImageView android:layout_width="32dp"
+            <ImageView
+                android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_marginLeft="16dp"
-                android:src="@drawable/ic_call_in"/>
+                android:src="@drawable/ic_call_in" />
 
-            <TextView android:layout_width="0dp"
-                android:layout_weight="1"
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="32dp"
-                android:textSize="20dp"
+                android:layout_weight="1"
+                android:text="@string/txt_goi_den"
                 android:textColor="@android:color/white"
-                android:text="Cuộc gọi đến"
-                android:layout_height="wrap_content"/>
+                android:textSize="20dp" />
 
         </TableRow>
 
@@ -102,19 +113,42 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:gravity="center"
             android:layout_marginTop="16dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
 
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_message"
+                android:textStyle="italic"
+                android:gravity="center"
+                android:textColor="@android:color/holo_red_light"
+                android:textSize="20dp"/>
+
+            <TextView
+                android:id="@+id/tv_countdown"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="36dp"
-                android:textStyle="bold"
-                android:id="@+id/tv_countdown"/>
+                android:layout_marginTop="8dp"
+                android:textStyle="bold" />
 
         </LinearLayout>
+
+
     </LinearLayout>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/banner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_id">
+
+    </com.google.android.gms.ads.AdView>
 
 
 </LinearLayout>

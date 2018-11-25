@@ -3,6 +3,7 @@ package com.tw2.runningmancallme;
 public class Contact {
     private String name;
     private String image;
+    private String call;
 
     public Contact() {
     }
@@ -10,6 +11,20 @@ public class Contact {
     public Contact(String name, String image) {
         this.name = name;
         this.image = image;
+    }
+
+    public Contact(String name, String image, String call) {
+        this.name = name;
+        this.image = image;
+        this.call = call;
+    }
+
+    public String getCall() {
+        return call;
+    }
+
+    public void setCall(String call) {
+        this.call = call;
     }
 
     public String getName() {

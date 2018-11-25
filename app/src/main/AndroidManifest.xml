@@ -1,20 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.tw2.runningmancallme">
 
     <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-feature android:name="android.hardware.camera2.full" />
+    <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".MainActivity">
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity android:name=".SplashScreenActivity"
+            android:theme="@style/SplashscreenTheme"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,15 +34,20 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".VideoCallActivity"/>
+        <activity android:name=".VideoCallActivity"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".CallInActivity"/>
+        <activity android:name=".CallInActivity"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".CallOutActivity"/>
+        <activity android:name=".CallOutActivity"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".InfoActivity"/>
+        <activity android:name=".InfoActivity"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".SettingActivity"/>
+        <activity android:name=".SettingActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
